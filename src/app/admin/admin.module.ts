@@ -6,10 +6,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path: '',
