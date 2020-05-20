@@ -10,6 +10,7 @@ import { AuthService } from './shared/components/admin-layout/services/auth.serv
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './shared/components/admin-layout/services/auth.guard';
 
 @NgModule({
   imports: [
@@ -24,9 +25,21 @@ import { FormsModule } from '@angular/forms';
         children: [
           { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
           { path: 'login', component: LoginPageComponent },
-          { path: 'dashboard', component: DashboardComponent },
-          { path: 'create', component: CreatePageComponent },
-          { path: 'post/:id/edit', component: EditPageComponent },
+          {
+            path: 'dashboard',
+            component: DashboardComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'create',
+            component: CreatePageComponent,
+            canActivate: [AuthGuard],
+          },
+          {
+            path: 'post/:id/edit',
+            component: EditPageComponent,
+            canActivate: [AuthGuard],
+          },
         ],
       },
     ]),
@@ -39,6 +52,6 @@ import { FormsModule } from '@angular/forms';
     CreatePageComponent,
     EditPageComponent,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
 })
 export class AdminModule {}
