@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, throwError, Subject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class AuthService {
   public error$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient) {}

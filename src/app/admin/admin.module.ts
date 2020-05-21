@@ -52,6 +52,6 @@ import { AuthGuard } from './shared/components/admin-layout/services/auth.guard'
     CreatePageComponent,
     EditPageComponent,
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [, AuthGuard],
 })
 export class AdminModule {}
