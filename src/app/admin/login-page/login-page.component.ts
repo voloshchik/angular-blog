@@ -1,5 +1,5 @@
 import { User } from '../../shared/components/interfaces';
-import { AuthService } from '../shared/components/admin-layout/services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Validators } from '@angular/forms';
 

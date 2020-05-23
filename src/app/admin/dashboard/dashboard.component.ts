@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../shared/components/admin-layout/services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { PostService } from '../../shared/post.service';
 import { Post } from '../../shared/components/interfaces';
 import { Subscription } from 'rxjs';
