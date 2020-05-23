@@ -6,11 +6,13 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
-import { AuthService } from './shared/services/auth.service';
+
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { AuthGuard } from './shared/services/auth.guard';
+import { SearchPipe } from './shared/search.pipe';
+
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { AuthGuard } from './shared/services/auth.guard';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+
     RouterModule.forChild([
       {
         path: '',
@@ -51,6 +54,7 @@ import { AuthGuard } from './shared/services/auth.guard';
     DashboardComponent,
     CreatePageComponent,
     EditPageComponent,
+    SearchPipe
   ],
   providers: [, AuthGuard],
 })
