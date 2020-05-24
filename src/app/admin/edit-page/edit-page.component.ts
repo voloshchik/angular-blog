@@ -7,21 +7,23 @@ import { Validators } from '@angular/forms';
 
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
   styleUrls: ['./edit-page.component.scss'],
 })
-export class EditPageComponent implements OnInit,OnDestroy {
+export class EditPageComponent implements OnInit, OnDestroy {
   form: FormGroup;
   post: Post;
   submitted = false;
-  uSub:Subscription
+  uSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
-    private postServece: PostService
+    private postServece: PostService,
+    private alert: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -41,18 +43,17 @@ export class EditPageComponent implements OnInit,OnDestroy {
       });
   }
 
-  ngOnDestroy(){
-if(this.uSub){
-  this.uSub.unsubscribe()
-}
-
+  ngOnDestroy() {
+    if (this.uSub) {
+      this.uSub.unsubscribe();
+    }
   }
   submit() {
     if (this.form.invalid) {
       return;
     }
     this.submitted = true;
-  this.uSub=   this.postServece
+    this.uSub = this.postServece
       .update({
         ...this.post,
         text: this.form.value.text,
@@ -60,6 +61,7 @@ if(this.uSub){
       })
       .subscribe(() => {
         this.submitted = false;
+        this.alert.success('Пост был обнавлен');
       });
   }
 }

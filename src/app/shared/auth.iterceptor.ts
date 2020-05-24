@@ -9,7 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../admin/shared/services/auth.service';
 import { Router } from '@angular/router';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -26,17 +26,14 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(req).pipe(
-        tap(()=>{
-            console.log('interseptor')
-        }),
       catchError((error: HttpErrorResponse) => {
         console.log('InterceptorError:', error);
-        if(error.status===401){
-            this.router.navigate(['/admin','login'],{
-                queryParams:{
-                    authFaild:true
-                }
-            })
+        if (error.status === 401) {
+          this.router.navigate(['/admin', 'login'], {
+            queryParams: {
+              authFaild: true,
+            },
+          });
         }
         return throwError(error);
       })
